@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 杂志专题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+            background-color: #f9f8f6;
+            color: #1f2a3a;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+
+        .page {
+            max-width: 720px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.02);
+            padding: 2.8rem 2rem 3.2rem;
+        }
+
+        /* hero 横幅 ———— 极简留白，只用字和间距 */
+        .hero {
+            margin-bottom: 2.8rem;
+        }
+
+        .hero-tag {
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #a99d8e;
+            border-bottom: 1px solid #e9e4dd;
+            display: inline-block;
+            padding-bottom: 0.3rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            color: #1e2b3a;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #546577;
+            max-width: 580px;
+        }
+
+        /* 背景说明 */
+        .background-section {
+            background-color: #f4f1ed;
+            border-radius: 24px;
+            padding: 1.8rem 1.8rem 2rem;
+            margin-bottom: 2.6rem;
+        }
+
+        .background-section h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #3d4a5c;
+            margin-bottom: 0.8rem;
+        }
+
+        .background-section p {
+            color: #495b6b;
+            font-size: 0.98rem;
+        }
+
+        /* 三段式自然介绍 — 卡片感但舍弃边框，仅用间距 */
+        .intro-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .intro-item {
+            border-bottom: 1px solid #efebe7;
+            padding-bottom: 1.6rem;
+        }
+
+        .intro-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .intro-item h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #253544;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .intro-item h3 .num {
+            font-size: 0.85rem;
+            color: #b3a696;
+            margin-right: 0.6rem;
+            font-weight: 400;
+        }
+
+        .intro-item p {
+            color: #3d4f60;
+            font-size: 0.98rem;
+        }
+
+        .intro-item .highlight-link {
+            color: #3b6e8f;
+            text-decoration: none;
+            border-bottom: 1px solid #d5dfe6;
+            transition: border-color 0.2s;
+        }
+
+        .intro-item .highlight-link:hover {
+            border-bottom-color: #3b6e8f;
+        }
+
+        /* 页尾访问提示 */
+        .footer-note {
+            background: transparent;
+            border-top: 1px solid #e7e1da;
+            padding-top: 2rem;
+            margin-top: 1rem;
+            text-align: left;
+        }
+
+        .footer-note p {
+            font-size: 0.95rem;
+            color: #56697c;
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-note a {
+            color: #2c5775;
+            text-decoration: none;
+            font-weight: 450;
+            border-bottom: 1px solid #ced9e0;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .footer-note a:hover {
+            border-bottom-color: #2c5775;
+            color: #183b4f;
+        }
+
+        .footer-sub {
+            font-size: 0.84rem;
+            color: #8b9aaa;
+            margin-top: 0.8rem;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 500px) {
+            .page {
+                padding: 1.8rem 1.2rem 2.4rem;
+                border-radius: 20px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .background-section {
+                padding: 1.4rem 1.2rem;
+            }
+
+            .intro-item h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            body {
+                padding: 1rem 0.6rem;
+            }
+
+            .page {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- 首页横幅 hero -->
+        <div class="hero">
+            <div class="hero-tag">杂志专题 · 生活与游戏</div>
+            <h1>一种陪伴，<br>叫爱游戏</h1>
+            <p>在屏幕亮起的瞬间，日常多了些柔软的故事。没有宏大叙事，只有细水长流的触动。</p>
+        </div>
+
+        <!-- 背景说明 -->
+        <div class="background-section">
+            <h2>从一段对话开始</h2>
+            <p>很多人第一次接触游戏，是因为身边有人轻轻问了句“要不要一起？” 那份邀请无关胜负，更像拆开一包糖，分你一半。<br>
+            后来才明白，让人一直留在某个世界里的，从来不是画面或规则，而是那些共同渡过的、不必解释的时刻。<br>
+            这大概就是「爱游戏」最原本的样子——一种自然的、生活里的陪伴。</p>
+        </div>
+
+        <!-- 三段自然介绍 (主题展开) -->
+        <div class="intro-grid">
+            <div class="intro-item">
+                <h3><span class="num">01</span>日常里的落脚点</h3>
+                <p>结束一天的工作，窝进沙发，打开那个熟悉的界面。不需要复杂的操作，哪怕只是整理一下背包、看看风景，都像一种深呼吸。<br>
+                有人说，游戏是一种数字花园。而<a href="https://officialportal-aiyouxi.com.cn" class="highlight-link">爱游戏</a>的人，往往更懂得如何让精神短暂休憩。</p>
+            </div>
+
+            <div class="intro-item">
+                <h3><span class="num">02</span>连接的方式不止一种</h3>
+                <p>朋友之间一起解谜、合作搭一座桥，或者只是各自挂着听对方翻书的声音——游戏早已不只是竞技。<br>
+                它变成了一种共同语言，像一起看一场雨。那些在虚拟世界里产生的真实默契，有时候比现实中的对话更来得自然。</p>
+            </div>
+
+            <div class="intro-item">
+                <h3><span class="num">03</span>小世界里的温暖秩序</h3>
+                <p>很多人在游戏里找到了属于自己的节奏：种一片田、布置一个小屋、跟着主线慢慢走。不赶时间，不攀比进度。<br>
+                这种“慢游戏”的态度，和生活本身很像——重要的不是通关，而是你在那个世界里，是否觉得自在。而恰恰是这种自在感，让很多人一直留在<a href="https://officialportal-aiyouxi.com.cn" class="highlight-link">爱游戏</a>的日常里。</p>
+            </div>
+        </div>
+
+        <!-- 页尾访问提示 -->
+        <div class="footer-note">
+            <p>如果你也好奇那种温和的陪伴感，可以慢慢了解这个叫「爱游戏」的地方。不必急着做什么，像翻开一本杂志的某一页，随意看看就好。</p>
+            <p>更多关于日常与游戏的记录，都在 <a href="https://officialportal-aiyouxi.com.cn">爱游戏</a>。</p>
+            <div class="footer-sub">— 用最轻的方式，和游戏做朋友</div>
+        </div>
+    </div>
+</body>
+</html>
