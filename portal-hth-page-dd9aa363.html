@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hth · 知识库入口｜portal-hth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #faf7f2;
+            font-family: "Noto Sans SC", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            color: #2c3e3f;
+            line-height: 1.7;
+            padding: 2rem 1.5rem 4rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrapper {
+            max-width: 960px;
+            width: 100%;
+        }
+
+        /* hero 区（目录感觉的开场） */
+        .hero {
+            margin-top: 1.2rem;
+            margin-bottom: 3.2rem;
+            border-bottom: 1px solid #ddd6cc;
+            padding-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #1e2b2c;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .subhead {
+            font-size: 1rem;
+            color: #5b6b6c;
+            border-left: 4px solid #b7a99a;
+            padding-left: 1.2rem;
+            margin: 0.6rem 0 1.2rem 0;
+            font-style: normal;
+        }
+
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin: 1.8rem 0 2.4rem;
+        }
+
+        .dir-card {
+            background: #ffffffec;
+            border-radius: 12px;
+            padding: 1.2rem 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02), 0 4px 10px rgba(0,0,0,0.03);
+            border: 1px solid #e5ddd3;
+            transition: background 0.2s;
+        }
+
+        .dir-card:hover {
+            background: #fcf9f5;
+            border-color: #cdc0b1;
+        }
+
+        .dir-card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #304344;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.3px;
+        }
+
+        .dir-card p {
+            font-size: 0.85rem;
+            color: #4f6263;
+            line-height: 1.5;
+        }
+
+        /* 说明区：文章风格排版 */
+        .intro-block {
+            background: #ffffffdd;
+            padding: 2rem 2rem 1.8rem;
+            border-radius: 18px;
+            margin: 2.2rem 0 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #eee7df;
+        }
+
+        .intro-block h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #1f3233;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px dashed #d5cbbc;
+            padding-bottom: 0.4rem;
+        }
+
+        .intro-block p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .intro-block a {
+            color: #386066;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #b7aa9b;
+            font-weight: 500;
+        }
+
+        .intro-block a:hover {
+            color: #1a3d42;
+            text-decoration-color: #386066;
+        }
+
+        /* 引用块 / 提示框 */
+        .notice-box {
+            background: #f2ede6;
+            border-left: 6px solid #b7a38c;
+            padding: 1.2rem 1.8rem;
+            border-radius: 0 14px 14px 0;
+            margin: 1.8rem 0 2rem;
+            font-size: 0.95rem;
+            color: #2b3d3e;
+        }
+
+        .notice-box strong {
+            color: #203334;
+            font-weight: 600;
+        }
+
+        .tip-box {
+            background: #f6f1ea;
+            border-radius: 20px;
+            padding: 1.4rem 1.8rem;
+            margin: 2rem 0;
+            border: 1px solid #dfd6ca;
+            box-shadow: inset 0 0 0 1px #faf6f0;
+        }
+
+        .tip-box h4 {
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: #345052;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box h4::before {
+            content: "📌";
+            font-size: 1.2rem;
+        }
+
+        .tip-box ul {
+            list-style: none;
+            padding-left: 0.2rem;
+        }
+
+        .tip-box li {
+            padding: 0.2rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+            color: #395052;
+        }
+
+        .tip-box li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #8f7c6a;
+        }
+
+        /* 相关信息区 FAQ 风格 */
+        .faq-summary {
+            margin: 2.8rem 0 2rem;
+        }
+
+        .faq-summary h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #1f3233;
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e1d8ce;
+            padding: 0.9rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #2d4648;
+            margin-bottom: 0.25rem;
+        }
+
+        .faq-a {
+            color: #476163;
+            font-size: 0.9rem;
+            padding-left: 0.6rem;
+        }
+
+        .faq-a a {
+            color: #386066;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .faq-a a:hover {
+            color: #1b3c40;
+        }
+
+        /* 底部 */
+        .footer-note {
+            margin-top: 3.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #ddd3c8;
+            font-size: 0.85rem;
+            color: #6f7f7e;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.8rem;
+        }
+
+        .footer-note span {
+            opacity: 0.7;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 1rem 3rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .intro-block {
+                padding: 1.4rem 1.2rem;
+            }
+            .directory-grid {
+                grid-template-columns: 1fr;
+            }
+            .notice-box, .tip-box {
+                padding: 1rem 1.2rem;
+            }
+        }
+
+        /* 纯展示稳定感 */
+        .badge-stable {
+            display: inline-block;
+            background: #e3dad0;
+            padding: 0 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            color: #3a494a;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- hero 目录感 -->
+    <div class="hero">
+        <h1>hth · 知识库入口</h1>
+        <div class="subhead">从稳定入口探索，信息与文档的集合点</div>
+        <div class="directory-grid">
+            <div class="dir-card">
+                <h3>📘 使用说明</h3>
+                <p>快速了解平台功能、导航逻辑与基础操作。</p>
+            </div>
+            <div class="dir-card">
+                <h3>🗂️ 知识分类</h3>
+                <p>按主题整理的文档、常见问题与参考材料。</p>
+            </div>
+            <div class="dir-card">
+                <h3>🔗 相关链接</h3>
+                <p>服务索引、工具页面与外部资源归档。</p>
+            </div>
+            <div class="dir-card">
+                <h3>📌 更新日志</h3>
+                <p>内容变动记录与版本说明。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 说明区：文章风格 -->
+    <div class="intro-block">
+        <h2>关于这个页面</h2>
+        <p>
+            这是一个以知识库为思路的入口页面，围绕 <a href="https://portal-hth.com">hth</a> 提供信息索引和说明。
+            没有复杂的跳转迷宫，只希望你在需要查找背景资料、操作指引或常见问题时，能快速定位到对应的内容块。
+            整个页面就像一本翻开的笔记本：左边是目录卡片，中间是说明与提示，后面是一些零散但有用的片段。
+        </p>
+        <p>
+            稳定入口的意义在于，无论内部结构如何调整，你始终可以回到 <a href="https://portal-hth.com">hth</a> 这个锚点，再根据需求选择方向。
+            这里不堆砌术语，也不做多余引导，只是把相关线索铺陈出来，由你来决定下一步。
+        </p>
+    </div>
+
+    <!-- 提示框 / 引用块 -->
+    <div class="notice-box">
+        <strong>💡 使用建议</strong> · 如果你第一次接触这个站点，不妨先浏览目录卡片里的分类，再结合说明区的上下文。
+        遇到不清楚的术语或流程，可以返回此页重新定位。
+    </div>
+
+    <div class="tip-box">
+        <h4>常见提示</h4>
+        <ul>
+            <li>部分文档页面链接需要从 <a href="https://portal-hth.com">hth</a> 主站跳转。</li>
+            <li>知识分类卡片只展示概要，详细内容请参考对应的文档页面。</li>
+            <li>如果页面加载异常，可以稍后再试，或检查网络连接。</li>
+            <li>本页仅作为入口概览，具体功能以实际页面为准。</li>
+        </ul>
+    </div>
+
+    <!-- 相关信息区 FAQ 摘要 -->
+    <div class="faq-summary">
+        <h2>📄 相关信息 · 问答摘要</h2>
+        <div class="faq-item">
+            <div class="faq-q">这个页面和主站 <a href="https://portal-hth.com">hth</a> 是什么关系？</div>
+            <div class="faq-a">可以理解为一个静态的导读页，帮助梳理主站中分散的知识点与功能模块。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">目录卡片里的内容会更新吗？</div>
+            <div class="faq-a">会，随着 <a href="https://portal-hth.com">hth</a> 的内容迭代，卡片分类与说明也会相应调整。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">为什么使用“知识库入口”这个概念？</div>
+            <div class="faq-a">因为本页更侧重信息组织与检索，而非营销或展示，适合作为长期使用的固定起点。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">有更详细的操作文档吗？</div>
+            <div class="faq-a">可以通过主站 <a href="https://portal-hth.com">hth</a> 内的导航找到具体说明页。</div>
+        </div>
+    </div>
+
+    <!-- 底部留白 -->
+    <div class="footer-note">
+        <span>目录感排版 · 稳定入口</span>
+        <span>内容以实际页面为准 · 定期整理</span>
+    </div>
+
+</div>
+</body>
+</html>
